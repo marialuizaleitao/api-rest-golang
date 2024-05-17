@@ -1,21 +1,11 @@
 package main
 
 import (
+	"api-rest-golang/routes"
 	"fmt"
-	"log"
-	"net/http"
 )
-
-func Home(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "Home Page")
-}
-
-func HandleRequest() {
-	http.HandleFunc("/", Home)
-	log.Fatal(http.ListenAndServe(":8000", nil))
-}
 
 func main() {
 	fmt.Println("Initializing Rest server with Go")
-	HandleRequest()
+	routes.HandleRequest()
 }
