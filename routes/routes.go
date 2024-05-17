@@ -2,11 +2,19 @@ package routes
 
 import (
 	"api-rest-golang/controllers"
-	"log"
+	"fmt"
+	"github.com/gorilla/mux"
 	"net/http"
 )
 
 func HandleRequest() {
-	http.HandleFunc("/", controllers.Home)
-	log.Fatal(http.ListenAndServe(":8000", nil))
+	r := mux.NewRouter()
+	r.HandleFunc("/", controllers.Home)
+	r.HandleFunc("/allPilots", controllers.AllPilots)
+
+	err := http.ListenAndServe(":8000", r)
+	if err != nil {
+		fmt.Println(err)
+	}
+
 }
