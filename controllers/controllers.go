@@ -1,6 +1,7 @@
 package controllers
 
 import (
+	"api-rest-golang/database"
 	"api-rest-golang/models"
 	"encoding/json"
 	"fmt"
@@ -14,7 +15,9 @@ func Home(w http.ResponseWriter, r *http.Request) {
 }
 
 func AllPilots(w http.ResponseWriter, r *http.Request) {
-	json.NewEncoder(w).Encode(models.Pilots)
+	var p []models.Pilot
+	database.DB.Find(&p)
+	json.NewEncoder(w).Encode(p)
 }
 
 func ReturnPilot(w http.ResponseWriter, r *http.Request) {
