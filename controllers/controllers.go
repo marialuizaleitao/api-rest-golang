@@ -7,7 +7,6 @@ import (
 	"fmt"
 	"github.com/gorilla/mux"
 	"net/http"
-	"strconv"
 )
 
 func Home(w http.ResponseWriter, r *http.Request) {
@@ -24,9 +23,7 @@ func ReturnPilot(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	id := vars["id"]
 
-	for _, pilot := range models.Pilots {
-		if strconv.Itoa(pilot.Id) == id {
-			json.NewEncoder(w).Encode(pilot)
-		}
-	}
+	var p models.Pilot
+	database.DB.First(&p, id)
+	json.NewEncoder(w).Encode(p)
 }
