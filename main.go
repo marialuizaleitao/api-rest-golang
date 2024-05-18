@@ -1,6 +1,7 @@
 package main
 
 import (
+	"api-rest-golang/database"
 	"api-rest-golang/models"
 	"api-rest-golang/routes"
 	"fmt"
@@ -12,7 +13,7 @@ func main() {
 		{Id: 2, Name: "Emerson Fittipaldi",
 			History: "Emerson Fittipaldi is a Brazilian racing driver who became the youngest Formula One world champion at the time when he won the title in 1972 at the age of 25. He won his second world championship in 1974. Fittipaldi is also known for his success in other racing series, including CART and IndyCar. He remains one of Brazil's most successful racing drivers."},
 	}
-
+	database.ConnectDatabase()
 	fmt.Println("Initializing Rest server with Go")
 	routes.HandleRequest()
 }
