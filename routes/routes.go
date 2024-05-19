@@ -13,6 +13,7 @@ func HandleRequest() {
 	r.HandleFunc("/pilots", controllers.AllPilots).Methods("Get")
 	r.HandleFunc("/pilots/{id}", controllers.ReturnPilot).Methods("Get")
 	r.HandleFunc("/pilots", controllers.CreatePilot).Methods("Post")
+	r.HandleFunc("/pilots/{id}", controllers.DeletePilot).Methods("Delete")
 
 	err := http.ListenAndServe(":8000", r)
 	if err != nil {
