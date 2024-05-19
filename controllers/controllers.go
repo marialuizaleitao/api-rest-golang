@@ -43,3 +43,14 @@ func DeletePilot(w http.ResponseWriter, r *http.Request) {
 	database.DB.Delete(&p, id)
 	json.NewEncoder(w).Encode(p)
 }
+
+func UpdatePilot(w http.ResponseWriter, r *http.Request) {
+	vars := mux.Vars(r)
+	id := vars["id"]
+
+	var p models.Pilot
+	database.DB.First(&p, id)
+	json.NewDecoder(r.Body).Decode(&p)
+	database.DB.Save(&p)
+	json.NewEncoder(w).Encode(p)
+}
