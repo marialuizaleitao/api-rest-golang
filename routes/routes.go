@@ -2,6 +2,7 @@ package routes
 
 import (
 	"api-rest-golang/controllers"
+	"api-rest-golang/middleware"
 	"fmt"
 	"github.com/gorilla/mux"
 	"net/http"
@@ -9,6 +10,7 @@ import (
 
 func HandleRequest() {
 	r := mux.NewRouter()
+	r.Use(middleware.ContentTypeMiddleware)
 	r.HandleFunc("/", controllers.Home)
 	r.HandleFunc("/pilots", controllers.AllPilots).Methods("Get")
 	r.HandleFunc("/pilots/{id}", controllers.ReturnPilot).Methods("Get")
