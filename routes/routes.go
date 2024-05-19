@@ -10,8 +10,9 @@ import (
 func HandleRequest() {
 	r := mux.NewRouter()
 	r.HandleFunc("/", controllers.Home)
-	r.HandleFunc("/allPilots", controllers.AllPilots).Methods("Get")
-	r.HandleFunc("/allPilots/{id}", controllers.ReturnPilot).Methods("Get")
+	r.HandleFunc("/pilots", controllers.AllPilots).Methods("Get")
+	r.HandleFunc("/pilots/{id}", controllers.ReturnPilot).Methods("Get")
+	r.HandleFunc("/pilots", controllers.CreatePilot).Methods("Post")
 
 	err := http.ListenAndServe(":8000", r)
 	if err != nil {

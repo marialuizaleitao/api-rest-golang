@@ -27,3 +27,10 @@ func ReturnPilot(w http.ResponseWriter, r *http.Request) {
 	database.DB.First(&p, id)
 	json.NewEncoder(w).Encode(p)
 }
+
+func CreatePilot(w http.ResponseWriter, r *http.Request) {
+	var newPilot models.Pilot
+	json.NewDecoder(r.Body).Decode(&newPilot)
+	database.DB.Create(&newPilot)
+	json.NewEncoder(w).Encode(newPilot)
+}
